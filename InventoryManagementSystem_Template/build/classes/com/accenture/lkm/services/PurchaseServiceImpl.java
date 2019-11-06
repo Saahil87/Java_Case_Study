@@ -5,10 +5,12 @@ import java.util.Calendar;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.accenture.lkm.business.bean.PurchaseBean;
 import com.accenture.lkm.dao.PurchaseDAOWrapper;
 
+@Service
 public class PurchaseServiceImpl implements PurchaseService {
 
 	@Autowired

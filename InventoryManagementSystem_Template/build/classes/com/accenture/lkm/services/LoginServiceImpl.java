@@ -1,11 +1,13 @@
 package com.accenture.lkm.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.accenture.lkm.business.bean.LoginBean;
 import com.accenture.lkm.dao.LoginDAOWrapper;
 import com.accenture.lkm.dao.PurchaseDAOWrapper;
 
+@Service
 public class LoginServiceImpl implements LoginService {
 
 	@Autowired

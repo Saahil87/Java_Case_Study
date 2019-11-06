@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.accenture.lkm.business.bean.PurchaseBean;
 import com.accenture.lkm.dao.ReportsDAOWrapper;
 
+@Service
 public class ReportsServiceImpl implements ReportsService {
 
 	@Autowired
