@@ -36,9 +36,9 @@ public class ReportsServiceImpl implements ReportsService {
 		
 	}
 	
-	public List<PurchaseBean> getVendorAndPurchaseIdWisePurchaseRecords(String vendorName, String purchaseId)
+	public List<PurchaseBean> getVendorAndPurchaseIdWiseRecords(String vendorName, String purchaseId)
 	{
-		return daoWrapper.getVendorAndPurchaseIdWisePurchaseRecords(vendorName,purchaseId);
+		return daoWrapper.getVendorAndPurchaseIdWiseRecords(vendorName,purchaseId);
 		
 	}
 	
