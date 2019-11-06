@@ -22,10 +22,10 @@ public class ReportsDAOWrapper  {
 	}
 
 
-	public List<PurchaseBean> getDateWisePurchaseRecords(Date date1, Date date2) {
+	public List<PurchaseBean> getDateWisePurchaseRecords(Date fromDate, Date toDate) {
 		// TODO Auto-generated method stub
 		List<PurchaseEntity> purchaseEntities=new ArrayList<>();
-		purchaseEntities=reportsDAO.getDateWisePurchaseRecords(date1, date2);
+		purchaseEntities=reportsDAO.getDateWisePurchaseRecords(fromDate, toDate);
 		List<PurchaseBean> purchaseBeans=new ArrayList<>();
 		for(PurchaseEntity entity:purchaseEntities) {
 			PurchaseBean bean=new PurchaseBean();
@@ -37,10 +37,10 @@ public class ReportsDAOWrapper  {
 	}
 
 	
-	public List<PurchaseBean> getVendorWisePurchaseRecords(String str) {
+	public List<PurchaseBean> getVendorWisePurchaseRecords(String vendorName) {
 		// TODO Auto-generated method stub
 		List<PurchaseEntity> purchaseEntities=new ArrayList<>();
-		purchaseEntities=reportsDAO.getVendorWisePurchaseRecords(str);
+		purchaseEntities=reportsDAO.getVendorWisePurchaseRecords(vendorName);
 		List<PurchaseBean> purchaseBeans=new ArrayList<>();
 		for(PurchaseEntity entity:purchaseEntities) {
 			PurchaseBean bean=new PurchaseBean();
@@ -51,10 +51,10 @@ public class ReportsDAOWrapper  {
 	}
 
 	
-	public List<PurchaseBean> getVendorAndPurchaseIdWiseRecords(String str1, String str2) {
+	public List<PurchaseBean> getVendorAndPurchaseIdWiseRecords(String vendorName, String purchaseId) {
 		// TODO Auto-generated method stub
 		List<PurchaseEntity> purchaseEntities=new ArrayList<>();
-		purchaseEntities=reportsDAO.getVendorAndPurchaseIdWiseRecords(str1, str2);
+		purchaseEntities=reportsDAO.getVendorAndPurchaseIdWiseRecords(vendorName, purchaseId);
 		List<PurchaseBean> purchaseBeans=new ArrayList<>();
 		for(PurchaseEntity entity:purchaseEntities) {
 			PurchaseBean bean=new PurchaseBean();
@@ -65,10 +65,10 @@ public class ReportsDAOWrapper  {
 	}
 
 	
-	public List<String> fetchPurchaseIds() {
+	public List<String> fetchPurchaseIds(String vendorName) {
 		// TODO Auto-generated method stub
 		List<String> list=new ArrayList<>();
-		list=reportsDAO.fetchPurchaseIds();
+		list=reportsDAO.fetchPurchaseIds(vendorName);
 		return list;
 	}
 

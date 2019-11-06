@@ -15,15 +15,15 @@ import com.accenture.lkm.entity.PurchaseEntity;
 @Transactional("txManager")
 public interface ReportsDAO {
 
-	@Query("select m from PurchaseEntity m where m.purchaseDate >=:date1 and m.purchaseDate <=:date2")
-	public List<PurchaseEntity> getDateWisePurchaseRecords(@Param("date1")Date date1, @Param("date2")Date date2);
+	@Query("select m from PurchaseEntity m where m.purchaseDate >=:fromDate and m.purchaseDate <=:toDate")
+	public List<PurchaseEntity> getDateWisePurchaseRecords(@Param("fromDate")Date fromDate, @Param("toDate")Date toDate);
 	
-	@Query("select m from PurchaseEntity m where m.vendorName=:str")
-	public List<PurchaseEntity> getVendorWisePurchaseRecords(@Param("str")String str);
+	@Query("select m from PurchaseEntity m where m.vendorName=:vendorName")
+	public List<PurchaseEntity> getVendorWisePurchaseRecords(@Param("vendorName")String vendorName);
 	
-	@Query("select m from PurchaseEntity m where m.vendorName=:str1 and m.purchaseId=:str2")
-	public List<PurchaseEntity> getVendorAndPurchaseIdWiseRecords(@Param("str1")String str1,@Param("str2")String str2);
+	@Query("select m from PurchaseEntity m where m.vendorName=:vendorName and m.purchaseId=:purchaseId")
+	public List<PurchaseEntity> getVendorAndPurchaseIdWiseRecords(@Param("vendorName")String vendorName,@Param("purchaseId")String purchaseId);
 	
-	@Query("select m.purchaseId from PurchaseEntity m")
-	public List<String> fetchPurchaseIds();
+	@Query("select m.purchaseId from PurchaseEntity m where m.vendorName=:vendorName")
+	public List<String> fetchPurchaseIds(@Param("vendorName")String vendorName);
 }
