@@ -1,8 +1,13 @@
 package com.accenture.lkm.business.bean;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class LoginBean {
-	
+	@NotNull(message="username cannot be empty")
 	private String username;
+	@NotNull(message="password cannot be empty")
+	@Size(min=3, max=10, message="Password should contain min 3 and max 10 characters")
 	private String password;
 	
 	public LoginBean() {

@@ -2,9 +2,13 @@ package com.accenture.lkm.business.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class DateWisePurchaseReportBean {
 	
+	@NotNull(message="From Date cannot be empty")
 	private Date fromDate;
+	@NotNull(message="To Date cannot be empty")
 	private Date toDate;
 	public DateWisePurchaseReportBean() {
 		super();

@@ -2,15 +2,23 @@ package com.accenture.lkm.business.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class PurchaseBean {
 	
 	private String purchaseId;
 	private String vendorName;
 	private String materialCatergoryId;
 	private String materialTypeId;
+	@NotNull(message="Brandname cannot be empty")
 	private String brandName;
 	private String untiId;
+	@Min(value = 1,message="Quantity should be atleast 1")
 	private Integer quantity;
+	@Min(value = 5000,message="Purchase Amount should be minimum 5000")
 	private Double purchaseAmount;
 	private Date purchaseDate;
 	private String materialCategoryName;
