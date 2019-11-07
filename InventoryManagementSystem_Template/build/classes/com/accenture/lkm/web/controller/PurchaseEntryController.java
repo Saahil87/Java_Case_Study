@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,7 +50,7 @@ public class PurchaseEntryController {
 		return mv;
 	}
 	
-	
+	@RequestMapping(value="addPurchaseEntry", method=RequestMethod.POST)
 	public ModelAndView addPurchaseEntry(@Valid @ModelAttribute("purchaseBean")PurchaseBean purchaseBean, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()) {
@@ -66,12 +67,18 @@ public class PurchaseEntryController {
 	}
 	
 	
+	//Something is up here 
 	
+	@RequestMapping(value="fetchMaterialTypesAndMaterialUnitsList", method=RequestMethod.POST)
 	public ModelAndView fetchMaterialTypesAndMaterialUnitsList(PurchaseBean purchaseBean) {
 		List<MaterialTypeBean> materialTypeBeans = typeConsumer.generateMaterialTypeBeanList();
 		List<UnitBean> unitBeans = unitConsumer.getUnitBeanList();
-		
+
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("materialTypeBeans", materialTypeBeans);
+		mv.addObject("unitBeans" , unitBeans);
+		mv.setViewName("PurchaseEntry");
+		return mv;
 		
 	}
 	

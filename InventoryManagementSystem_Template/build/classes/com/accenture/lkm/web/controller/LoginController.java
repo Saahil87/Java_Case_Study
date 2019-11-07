@@ -29,6 +29,12 @@ public class LoginController {
 		return mv;
 	}
 	
+	/*
+	 * LOGOUT Logic
+	 * 
+	 */
+	
+	
 	@RequestMapping(value="validateLogin", method=RequestMethod.POST)
 	public ModelAndView validateLogin(@Valid @ModelAttribute("loginBean")LoginBean loginBean, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
@@ -39,12 +45,12 @@ public class LoginController {
 			mv.setViewName("Login");
 			mv.addObject("error", result);
 		}else {
-			if(loginBean!=null) {
+			if(loginBeanRet!=null) {
 				mv.addObject("loginBean", loginBeanRet);
 				mv.setViewName("LoginSuccess");
 			}else {
 				String msg="Either Username and Password is incorrect. Please enter credentials again.";
-				mv.addObject("error", msg);
+				mv.addObject("invalid", msg);
 				mv.setViewName("Login");
 			}
 		}
