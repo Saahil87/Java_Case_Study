@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,21 +13,67 @@ a {
 <h1>Inventory Management System</h1><hr/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
-<a  href="#">Purchase Entry</a>
-  <a  href="#">Purchase Report-Date Wise</a>
-  <a  href="#">Vendor-Purchased Item Report</a>
-  <a  href="#">Logout</a>
+<a  href="loadPurchaseEntryPage.html">Purchase Entry</a>
+  <a  href="loadDateWisePurchaseReportPage.html">Purchase Report-Date Wise</a>
+  <a  href="loadVendorWisePurchaseReportPage.html">Vendor-Purchased Item Report</a>
+  <a  href="index.jsp">Logout</a>
 
   <hr/>
 <body>
+
+<script type="text/javascript">
+
+ 
+
+function getUnitAndTypeList(){   
+
+document.forms["form1"].action="fetchMaterialTypesAndMaterialUnitsList.html";
+
+    document.forms["form1"].method="post";
+
+    document.forms["form1"].submit();
+
+}
+
+ 
+
+</script>
+
 <center>
 <h2>Material Purchase Entry</h2></center>
-<spring:form action="" method="POST" modelAttribute="purchaseBean">
+<spring:form action="addPurchaseEntry.html" method="POST" modelAttribute="purchaseBean" name="form1">
 <table>
-<tr><td>Vendor Name <spring:select path="vendorName" items="${getVendorName}"/>
-<tr><td>Material Category<spring:select path="materialCategoryName" items="${getmaterialCategoryName}"/>
-<tr><td>Material Type<spring:select path="materialTypeName" items="${getmaterialTypeName}"/>
-<tr><td>Unit <spring:select path="unitName" items="${getunitName}"/>
+
+<tr>
+	<td>Vendor Name</td>
+	<td><spring:select path="vendorName">
+			<spring:options items="${generateVendorList}" itemValue="vendorName" itemLabel="vendorName"/>
+	</spring:select></td>
+</tr>
+<tr>
+	<td>Material Category</td>
+	<td><spring:select path="materialCatergoryId" onchange="getUnitAndTypeList();">
+		<spring:option value="" label="--Select--"></spring:option>
+		<spring:options items="${generateMaterialCategoryList}" itemValue="categoryId" itemLabel="categoryName"/>
+	</spring:select></td>
+<tr>
+
+
+<tr>
+	<td>Material Type</td>
+	<td><spring:select path="materialTypeId">
+		<spring:option value="" label="--Select--"></spring:option>
+		<spring:options items="${materialTypeBeans}" itemValue="typeId" itemLabel="typeName"/>
+	</spring:select></td>
+</tr>
+<tr>
+	<td>Unit</td>
+	<td><spring:select path="unitId">
+		<spring:option value="" label="--Select--"></spring:option>
+		<spring:options items="${unitBeans}" itemValue="unitId" itemLabel="unitName"/>
+	</spring:select></td>
+</tr>
+
 <tr><td>Brand Name <spring:input path="brandName"/>
 <tr><td>Quantity <spring:input path="quantity"/>
 <tr><td>Purchase Amount <spring:input path="purchaseAmount"/>
@@ -36,7 +83,7 @@ a {
 <spring:errors cssClass="error" path="*"></spring:errors>
 </spring:form>
 
-{successful}
+<p style="color:red">${successful}</p>
 
 <hr>
 <div>

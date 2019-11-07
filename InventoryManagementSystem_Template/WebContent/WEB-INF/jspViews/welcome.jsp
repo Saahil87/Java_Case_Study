@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
+<style>
+a {
+  padding-right: 30px;
+}
+</style>
 <h1>Inventory Management System</h1><hr/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
-<body> 
-  <a  href="loadLoginPage.html">Login</a>
+<a  href="loadPurchaseEntryPage.html">Purchase Entry</a>
+  <a  href="loadDateWisePurchaseReportPage.html">Purchase Report-Date Wise</a>
+  <a  href="loadVendorWisePurchaseReportPage.html">Vendor-Purchased Item Report</a>
+  <a  href="index.jsp">Logout</a>
+
   <hr/>
 <h1>Problem Statement</h1>
 

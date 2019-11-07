@@ -15,15 +15,15 @@ a {
 <h1>Inventory Management System</h1><hr/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
-<a  href="#">Purchase Entry</a>
-  <a  href="#">Purchase Report-Date Wise</a>
-  <a  href="#">Vendor-Purchased Item Report</a>
-  <a  href="#">Logout</a>
+<a  href="loadPurchaseEntryPage.html">Purchase Entry</a>
+  <a  href="loadDateWisePurchaseReportPage.html">Purchase Report-Date Wise</a>
+  <a  href="loadVendorWisePurchaseReportPage.html">Vendor-Purchased Item Report</a>
+  <a  href="index.jsp">Logout</a>
 
   <hr/>
 <body>
 <h2>Purchase Report Datewise</h2>
-<spring:form action="" method="POST" modelAttribute="dateWisePurchaseReportBean">
+<spring:form action="getDateWisePurchaseReportPage.html" method="POST" modelAttribute="dateWisePurchaseReportBean">
 <table>
 <tr><td>From Date <spring:input path="fromDate"/>
 <tr><td>To Date <spring:input path="toDate"/>
@@ -32,17 +32,17 @@ a {
 <spring:errors cssClass="error" path="*"></spring:errors>
 </spring:form>
 
-<c:if test="${not empty insertfetchlistname}">
-<table>
+<c:if test="${not empty dateWisePurchaseRecords}">
+<table border="2">
 <tr><th>Material Category</th><th>Material Type</th><th>Brand</th><th>Quantity</th><th>Unit</th><th>Price</th><th>Vendor</th><th>Purchase Date</th></tr>
-<c:forEach items="insertfetchlistname" var="material">
+<c:forEach items="${dateWisePurchaseRecords}" var="material">
 <tr>
 	<td><c:out value="${material.materialCategoryName}"/></td>
 	<td><c:out value="${material.materialTypeName}"></c:out></td>
 	<td><c:out value="${material.brandName}"></c:out></td>
 	<td><c:out value="${material.quantity}"></c:out></td>
 	<td><c:out value="${material.unitName}"></c:out></td>
-	<td><c:out value="${material.price}"></c:out></td>
+	<td><c:out value="${material.purchaseAmount}"></c:out></td>
 	<td><c:out value="${material.vendorName}"></c:out></td>
 	<td><c:out value="${material.purchaseDate}"></c:out></td>
 </tr>
