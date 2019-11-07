@@ -23,6 +23,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public PurchaseBean addPurchaseEntry(PurchaseBean purchaseBean) {
 		// TODO Auto-generated method stub
+		purchaseBean.setPurchaseId(purchaseIdGenerator(purchaseBean));
+		
 		return daoWrapper.addPurchaseEntry(purchaseBean);
 	}
 
