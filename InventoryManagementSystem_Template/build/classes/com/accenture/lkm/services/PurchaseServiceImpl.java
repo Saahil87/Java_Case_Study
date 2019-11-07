@@ -34,7 +34,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		Random randomGenerator = new Random();
 	
 
-		String purchaseId = "P_" + purchaseBean.getVendorName().substring(0, 3) + "_"
+		String purchaseId = "P_" + purchaseBean.getVendorName().substring(0, 3).toUpperCase() + "_"
 				+ simpleDateformat.format(purchaseBean.getPurchaseDate()) +"_"
 				+ purchaseBean.getMaterialCatergoryId()+"_"+(randomGenerator.nextInt(101));
 		
