@@ -26,7 +26,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return daoWrapper.addPurchaseEntry(purchaseBean);
 	}
 
-	public String purchaseIdGenerator(PurchaseBean purchaseBean) {
+	private String purchaseIdGenerator(PurchaseBean purchaseBean) {
 		
 
 		SimpleDateFormat simpleDateformat = new SimpleDateFormat("MMMddEEE");
