@@ -61,7 +61,6 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		LoginBean bean = (LoginBean) session.getAttribute("loginBean");
 		if(bean!=null) {
-			bean=null;
 		session.removeAttribute("loginBean");
 		session.invalidate();
 		}

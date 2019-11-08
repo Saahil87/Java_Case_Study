@@ -65,14 +65,12 @@ public class PurchaseEntryController {
 		}
 		else {
 			
-			if(session.getAttribute("loginBean")==null)
 				mv.setViewName("welcome");
-			else {
 				PurchaseBean bean = service.addPurchaseEntry(purchaseBean);
 				String msg = "Purchase Entry Added with Purchase id as : "+bean.getPurchaseId();
 				mv.addObject("successful", msg);
 				mv.setViewName("PurchaseEntry");
-			}
+			
 		}
 		return mv;
 	}

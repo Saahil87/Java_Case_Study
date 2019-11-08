@@ -22,12 +22,14 @@ public class LoginDAOWrapper {
 	
 	public LoginBean validateLogin(LoginBean loginBean) {
 		LoginEntity entity=loginDAO.findOne(loginBean.getUsername());
+		
 		LoginBean bean=null;
 		if(entity!=null) {
-			if (entity.getPassword().equals(loginBean.getPassword()))
+			if (entity.getPassword().equals(loginBean.getPassword())) {
 				bean=new LoginBean();
 				BeanUtils.copyProperties(entity, bean);
 				return bean;
+			}
 		}
 		return bean;
 	}
