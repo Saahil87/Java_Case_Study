@@ -18,7 +18,7 @@ a {
 <a  href="loadPurchaseEntryPage.html">Purchase Entry</a>
   <a  href="loadDateWisePurchaseReportPage.html">Purchase Report-Date Wise</a>
   <a  href="loadVendorWisePurchaseReportPage.html">Vendor-Purchased Item Report</a>
-  <a  href="index.jsp">Logout</a>
+  <a  href="logout.html">Logout</a>
 
   <hr/>
 <body>
@@ -51,7 +51,7 @@ a {
 </c:if>
 <hr>
 <div>
-  <p align="center" style="font-family: calibri;color: #6666CC;">Copyright © 2018 Accenture All Rights Reserved.</p>
+  <p align="center" style="font-family: calibri;color: #6666CC;">Copyright Â© 2018 Accenture All Rights Reserved.</p>
 </div>
 </body>
 </html>
