@@ -29,10 +29,15 @@ public class LoginController {
 		return mv;
 	}
 	
-	/*
-	 * LOGOUT Logic
-	 * 
-	 */
+	@RequestMapping(value="logout")
+	public ModelAndView logout(@ModelAttribute("loginBean")LoginBean bean, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		session.invalidate();
+		bean = null;
+		mv.setViewName("Login");
+		return mv;
+	}
 	
 	
 	@RequestMapping(value="validateLogin", method=RequestMethod.POST)
