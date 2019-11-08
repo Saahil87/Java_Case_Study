@@ -2,6 +2,7 @@ package com.accenture.lkm.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.accenture.lkm.business.bean.DateWisePurchaseReportBean;
+import com.accenture.lkm.business.bean.LoginBean;
 import com.accenture.lkm.business.bean.PurchaseBean;
 import com.accenture.lkm.business.bean.VendorBean;
 import com.accenture.lkm.services.ReportsService;
@@ -43,7 +46,7 @@ public class ReportsController {
 
 	
 	@RequestMapping(value="loadDateWisePurchaseReportPage")
-	public ModelAndView loadDateWisePurchaseReportPage() {
+	public ModelAndView loadDateWisePurchaseReportPage(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dateWisePurchaseReportBean", new DateWisePurchaseReportBean());
 		mv.setViewName("PurchaseReportDateWise");
@@ -51,7 +54,7 @@ public class ReportsController {
 	}
 	
 	@RequestMapping(value="loadVendorWisePurchaseReportPage")
-	public ModelAndView loadVendorWisePurchaseReportPage() {
+	public ModelAndView loadVendorWisePurchaseReportPage(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("purchaseBean", new PurchaseBean());
 		mv.setViewName("VendorPurchasedItemReport");
@@ -63,7 +66,11 @@ public class ReportsController {
 		//get something
 		ModelAndView mv = new ModelAndView();
 		List<PurchaseBean> purchaseBeans = reportService.getDateWisePurchaseRecords(dateWisePurchaseReportBean.getFromDate(), dateWisePurchaseReportBean.getToDate());
-		
+		if(purchaseBeans.isEmpty()) {
+			mv.addObject("invalid", "No Records found");
+			mv.setViewName("PurchaseReportDateWise");
+			return mv;
+		}
 		for (PurchaseBean bean : purchaseBeans) {
 
 			bean.setMaterialCategoryName(categoryConsumer.getCategoryMap().get(bean.getMaterialCatergoryId()));
@@ -89,7 +96,11 @@ public class ReportsController {
 		//get something
 		ModelAndView mv = new ModelAndView();
 		List<PurchaseBean> purchaseBeans = reportService.getVendorWisePurchaseRecords(purchaseBean.getVendorName());
-		
+		if(purchaseBeans.isEmpty()) {
+			mv.addObject("invalid", "No Records found");
+			mv.setViewName("VendorPurchasedItemReport");
+			return mv;
+		}
 		for (PurchaseBean bean : purchaseBeans) {
 
 			bean.setMaterialCategoryName(categoryConsumer.getCategoryMap().get(bean.getMaterialCatergoryId()));
@@ -109,6 +120,5 @@ public class ReportsController {
 	public List<VendorBean> generateVendorList() {
 		return vendorServiceConsumer.generateVendorList();
 	}
-	
 	
 }

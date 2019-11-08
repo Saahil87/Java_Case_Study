@@ -18,14 +18,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public LoginBean validateLogin(LoginBean loginBean) {
-		// TODO Auto-generated method stub
-
-		LoginBean daoBean =daoWrapper.validateLogin(loginBean);
-		if (loginBean.getUsername().equals(daoBean.getUsername())
-				&& loginBean.getPassword().equals(daoBean.getPassword()))
-			return daoBean;
-		else
-			return null;
+		return daoWrapper.validateLogin(loginBean);
 	}
 
 }

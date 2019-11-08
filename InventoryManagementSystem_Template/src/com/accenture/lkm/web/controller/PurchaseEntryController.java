@@ -2,6 +2,7 @@ package com.accenture.lkm.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.accenture.lkm.business.bean.LoginBean;
 import com.accenture.lkm.business.bean.MaterialCategoryBean;
 import com.accenture.lkm.business.bean.MaterialTypeBean;
 import com.accenture.lkm.business.bean.PurchaseBean;
@@ -24,6 +27,7 @@ import com.accenture.lkm.web.client.UnitServiceConsumer;
 import com.accenture.lkm.web.client.VendorServiceConsumer;
 
 @RestController
+@SessionAttributes({"materialTypeBeans","unitBeans"})
 public class PurchaseEntryController {
 	
 	@Autowired
@@ -43,25 +47,32 @@ public class PurchaseEntryController {
 
 	
 	@RequestMapping(value="loadPurchaseEntryPage")
-	public ModelAndView loadPurchaseEntryPage() {
+	public ModelAndView loadPurchaseEntryPage(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		String name = (String) session.getAttribute("username");
+		mv.addObject("username", name);
 		mv.addObject("purchaseBean", new PurchaseBean());
 		mv.setViewName("PurchaseEntry");
 		return mv;
 	}
 	
 	@RequestMapping(value="addPurchaseEntry", method=RequestMethod.POST)
-	public ModelAndView addPurchaseEntry(@Valid @ModelAttribute("purchaseBean")PurchaseBean purchaseBean, BindingResult result) {
+	public ModelAndView addPurchaseEntry(@Valid @ModelAttribute("purchaseBean")PurchaseBean purchaseBean, BindingResult result, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		
 		if(result.hasErrors()) {
-			mv.addObject("error", result);
 			mv.setViewName("PurchaseEntry");
 		}
 		else {
-		PurchaseBean bean = service.addPurchaseEntry(purchaseBean);
-		String msg = "Purchase Entry Added with Purchase id as : "+bean.getPurchaseId();
-		mv.addObject("successful", msg);
-		mv.setViewName("PurchaseEntry");
+			
+			if(session.getAttribute("loginBean")==null)
+				mv.setViewName("welcome");
+			else {
+				PurchaseBean bean = service.addPurchaseEntry(purchaseBean);
+				String msg = "Purchase Entry Added with Purchase id as : "+bean.getPurchaseId();
+				mv.addObject("successful", msg);
+				mv.setViewName("PurchaseEntry");
+			}
 		}
 		return mv;
 	}
@@ -91,7 +102,6 @@ public class PurchaseEntryController {
 	public List<MaterialCategoryBean> generateMaterialCategoryList(){
 		return categoryConsumer.generateMaterialCategoryBeanList();
 	}
-	
 	
 	
 	

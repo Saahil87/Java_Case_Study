@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
 
 public class PurchaseBean {
 	
@@ -26,7 +25,6 @@ public class PurchaseBean {
 	@Min(value = 1,message="Quantity should be atleast 1")
 	private Integer quantity;
 	@NotNull
-	@NumberFormat
 	private Double purchaseAmount;
 	@NotNull
 	@DateTimeFormat(pattern="dd-MMM-yyyy")
