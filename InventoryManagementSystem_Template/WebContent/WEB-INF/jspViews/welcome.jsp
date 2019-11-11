@@ -34,7 +34,7 @@ Specific purchase id
 </p>
 <hr/>
 <div>
-  <p align="center" style="font-family: calibri;color: #6666CC;">Copyright Â© 2018 Accenture All Rights Reserved.</p>
+  <p align="center" style="font-family: calibri;color: #6666CC;">Copyright © 2018 Accenture All Rights Reserved.</p>
 </div>
 <hr/>
 </body>

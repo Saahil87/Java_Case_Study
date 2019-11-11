@@ -11,6 +11,9 @@
 a {
   padding-right: 30px;
 }
+.error{
+	color: red;
+}
 </style>
 <h1>Inventory Management System</h1><hr/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -25,11 +28,11 @@ a {
 <h2>Purchase Report Datewise</h2>
 <spring:form action="getDateWisePurchaseReportPage.html" method="POST" modelAttribute="dateWisePurchaseReportBean">
 <table>
-<tr><td>From Date <spring:input path="fromDate"/>
-<tr><td>To Date <spring:input path="toDate"/>
+<tr><td>From Date <spring:input path="fromDate"/></td><td><spring:errors cssClass="error" path="fromDate"></spring:errors></td>
+<tr><td>To Date <spring:input path="toDate"/></td><td><spring:errors cssClass="error" path="toDate"></spring:errors></td>
 <tr><td><input type="submit" value="Search"/>
 </table>
-<spring:errors cssClass="error" path="*"></spring:errors>
+
 </spring:form>
 
 <c:if test="${not empty dateWisePurchaseRecords}">
@@ -50,8 +53,9 @@ a {
 </table>
 </c:if>
 <hr>
+${invalid }
 <div>
-  <p align="center" style="font-family: calibri;color: #6666CC;">Copyright Â© 2018 Accenture All Rights Reserved.</p>
+  <p align="center" style="font-family: calibri;color: #6666CC;">Copyright © 2018 Accenture All Rights Reserved.</p>
 </div>
 </body>
 </html>
